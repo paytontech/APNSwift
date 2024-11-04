@@ -126,6 +126,8 @@ public struct APNSLiveActivityNotification<ContentState: Encodable & Sendable, A
         priority: APNSPriority,
         appID: String,
         contentState: ContentState,
+        attributes: Attributes? = nil,
+        attributesType: String? = nil,
         event: APNSLiveActivityNotificationEvent,
         timestamp: Int,
         dismissalDate: APNSLiveActivityDismissalDate = .none,
@@ -163,6 +165,8 @@ public struct APNSLiveActivityNotification<ContentState: Encodable & Sendable, A
         topic: String,
         apnsID: UUID? = nil,
         contentState: ContentState,
+        attributes: Attributes? = nil,
+        attributesType: String? = nil,
         event: APNSLiveActivityNotificationEvent,
         timestamp: Int,
         dismissalDate: APNSLiveActivityDismissalDate = .none
@@ -177,5 +181,7 @@ public struct APNSLiveActivityNotification<ContentState: Encodable & Sendable, A
         self.expiration = expiration
         self.priority = priority
         self.topic = topic
+        self.attributes = attributes
+        self.attributeType = attributesType
     }
 }
