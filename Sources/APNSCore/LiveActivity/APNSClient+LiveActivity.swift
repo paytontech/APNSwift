@@ -25,8 +25,8 @@ extension APNSClientProtocol {
     ///   - logger: The logger to use for sending this notification.
     @discardableResult
     @inlinable
-    public func sendLiveActivityNotification<ContentState: Encodable>(
-        _ notification: APNSLiveActivityNotification<ContentState>,
+    public func sendLiveActivityNotification<ContentState: Encodable, Attributes: Encodable>(
+        _ notification: APNSLiveActivityNotification<ContentState, Attributes>,
         deviceToken: String
     ) async throws -> APNSResponse {
         let request = APNSRequest(

@@ -17,13 +17,13 @@ import struct Foundation.UUID
 /// A live activity notification.
 ///
 /// It is **important** that you do not encode anything with the key `aps`.
-public struct APNSLiveActivityNotification<ContentState: Encodable & Sendable>: APNSMessage {
+public struct APNSLiveActivityNotification<ContentState: Encodable & Sendable, Attributes: Encodable & Sendable>: APNSMessage {
     enum CodingKeys: CodingKey {
         case aps
     }
 
     /// The fixed content to indicate that this is a background notification.
-    private var aps: APNSLiveActivityNotificationAPSStorage<ContentState>
+    private var aps: APNSLiveActivityNotificationAPSStorage<ContentState, Attributes>
 
     /// Timestamp when sending notification
     public var timestamp: Int {
@@ -55,6 +55,24 @@ public struct APNSLiveActivityNotification<ContentState: Encodable & Sendable>: 
 
         set {
             self.aps.contentState = newValue
+        }
+    }
+    
+    public var attributes: Attributes? {
+        get {
+            return self.aps.attributes
+        }
+
+        set {
+            self.aps.attributes = newValue
+        }
+    }
+    public var attributeType: String? {
+        get {
+            return self.aps.attributeType
+        }
+        set {
+            self.aps.attributeType = newValue
         }
     }
 
