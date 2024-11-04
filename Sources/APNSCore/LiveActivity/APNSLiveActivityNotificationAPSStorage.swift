@@ -20,6 +20,7 @@ struct APNSLiveActivityNotificationAPSStorage<ContentState: Encodable & Sendable
         case dismissalDate = "dismissal-date"
         case attributes = "attributes"
         case attributeType = "attributes-type"
+        case alert = "alert"
     }
 
     var timestamp: Int
