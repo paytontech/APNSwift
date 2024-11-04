@@ -28,6 +28,7 @@ struct APNSLiveActivityNotificationAPSStorage<ContentState: Encodable & Sendable
     var dismissalDate: Int?
     var attributes: Attributes?
     var attributeType: String?
+    var alert: APNSAlertNotificationContent
 
     init(
         timestamp: Int,
@@ -35,7 +36,8 @@ struct APNSLiveActivityNotificationAPSStorage<ContentState: Encodable & Sendable
         contentState: ContentState,
         dismissalDate: Int?,
         attributes: Attributes? = nil,
-        attributeType: String? = nil
+        attributeType: String? = nil,
+        alert: APNSAlertNotificationContent
     ) {
         self.timestamp = timestamp
         self.contentState = contentState
@@ -43,5 +45,6 @@ struct APNSLiveActivityNotificationAPSStorage<ContentState: Encodable & Sendable
         self.event = event
         self.attributes = attributes
         self.attributeType = attributeType
+        self.alert = alert
     }
 }

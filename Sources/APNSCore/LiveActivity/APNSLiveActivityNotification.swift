@@ -84,6 +84,15 @@ public struct APNSLiveActivityNotification<ContentState: Encodable & Sendable, A
             self.aps.dismissalDate = newValue?.dismissal
         }
     }
+    
+    public var alert: APNSAlertNotificationContent {
+        get {
+            return self.aps.alert
+        }
+        set {
+            self.aps.alert = newValue
+        }
+    }
 
     /// A canonical UUID that identifies the notification. If there is an error sending the notification,
     /// APNs uses this value to identify the notification to your server. The canonical form is 32 lowercase hexadecimal digits,
@@ -131,7 +140,8 @@ public struct APNSLiveActivityNotification<ContentState: Encodable & Sendable, A
         event: APNSLiveActivityNotificationEvent,
         timestamp: Int,
         dismissalDate: APNSLiveActivityDismissalDate = .none,
-        apnsID: UUID? = nil
+        apnsID: UUID? = nil,
+        alert: APNSAlertNotificationContent
     ) {
         self.init(
             expiration: expiration,
@@ -140,7 +150,8 @@ public struct APNSLiveActivityNotification<ContentState: Encodable & Sendable, A
             contentState: contentState,
             event: event,
             timestamp: timestamp,
-            dismissalDate: dismissalDate
+            dismissalDate: dismissalDate,
+            alert: alert
         )
     }
 
@@ -169,13 +180,15 @@ public struct APNSLiveActivityNotification<ContentState: Encodable & Sendable, A
         attributesType: String? = nil,
         event: APNSLiveActivityNotificationEvent,
         timestamp: Int,
-        dismissalDate: APNSLiveActivityDismissalDate = .none
+        dismissalDate: APNSLiveActivityDismissalDate = .none,
+        alert: APNSAlertNotificationContent
     ) {
         self.aps = APNSLiveActivityNotificationAPSStorage(
             timestamp: timestamp,
             event: event.rawValue,
             contentState: contentState,
-            dismissalDate: dismissalDate.dismissal
+            dismissalDate: dismissalDate.dismissal,
+            alert: alert
         )
         self.apnsID = apnsID
         self.expiration = expiration
